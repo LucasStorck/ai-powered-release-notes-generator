@@ -1,6 +1,6 @@
 package org.lucas.notesgenerator.dtos;
 
-public record NoteReleaseUpdate(
+public record NoteReleaseUpdateDto(
         String markdownSummary
 ) {
 }

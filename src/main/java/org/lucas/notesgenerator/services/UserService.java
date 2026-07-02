@@ -2,6 +2,8 @@ package org.lucas.notesgenerator.services;
 
 import org.lucas.notesgenerator.dtos.UserRequestDto;
 import org.lucas.notesgenerator.dtos.UserResponseDto;
+import org.lucas.notesgenerator.dtos.UserUpdateDto;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +15,7 @@ public interface UserService {
 
   List<UserResponseDto> getAllUsers();
 
-  UserResponseDto updateUser(UUID id, UserRequestDto userRequestDto);
+  UserResponseDto updateUser(UUID id, UserUpdateDto userUpdateDto);
 
   void deleteUser(UUID id);
 }
