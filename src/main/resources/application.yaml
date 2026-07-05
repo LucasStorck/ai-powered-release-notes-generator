@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/release_notes
     username: postgres
-    password: ""
+    password: novaSenha
 
   # JPA/Hibernate Configs
   jpa:

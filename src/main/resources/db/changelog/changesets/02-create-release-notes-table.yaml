@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: lucas
+      changes:
+        - createTable:
+            tableName: release_notes
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: raw_patch
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: clean_patch
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: markdown_summary
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: model_used
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamptz
+                  defaultValueComputed: NOW()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_release_notes_user
+                    referencedTableName: users
+                    referencedColumnNames: id

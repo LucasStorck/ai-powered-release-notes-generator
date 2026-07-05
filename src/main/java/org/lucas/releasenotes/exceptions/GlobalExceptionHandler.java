@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(ResourceAlreadyExistsException.class)
   public ResponseEntity<ErrorResponse> handlerConflict(ResourceAlreadyExistsException exception, HttpServletRequest request) {
-    logger.warn("Conflitc Detected At {}: {}", request.getRequestURI(), exception.getMessage());
+    logger.warn("Conflict Detected At {}: {}", request.getRequestURI(), exception.getMessage());
     ErrorResponse errorResponse = new ErrorResponse(
             LocalDateTime.now(),
             HttpStatus.CONFLICT.value(),

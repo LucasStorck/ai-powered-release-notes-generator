@@ -33,12 +33,12 @@ public class User implements UserDetails {
   @CreationTimestamp
   private LocalDateTime createdAt;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<ReleaseNote> releaseNotes = new ArrayList<>();
-
   @Column(name = "updated_at")
   @UpdateTimestamp
   private LocalDateTime updatedAt;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ReleaseNote> releaseNotes = new ArrayList<>();
 
   public User() {
   }

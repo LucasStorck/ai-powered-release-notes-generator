@@ -1,13 +1,14 @@
 package org.lucas.releasenotes.services;
 
 import org.springframework.stereotype.Service;
+
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.stream.Collectors;
 
 
 @Service
-public class GitPatchPaserServiceImpl implements GitPatchPaserService {
+public class GitPatchParserServiceImpl implements GitPatchParserService {
 
   @Override
   public String cleanPatch(String rawPatch) {
@@ -26,14 +27,14 @@ public class GitPatchPaserServiceImpl implements GitPatchPaserService {
   }
 
   private String formatLine(String line) {
-    if(line.startsWith("+++ b/")) {
-      return "\nArquivo Modificado: " + line.substring(6);
-    } else if(line.startsWith("--- a/")) {
+    if (line.startsWith("+++ b/")) {
+      return "\nFile Modified: " + line.substring(6);
+    } else if (line.startsWith("--- a/")) {
       return "";
-    } else if(line.startsWith("+")) {
-      return "Adicionado: " + line.substring(1).trim();
-    } else if(line.startsWith("-")) {
-      return "Removido: " + line.substring(1).trim();
+    } else if (line.startsWith("+")) {
+      return "Added: " + line.substring(1).trim();
+    } else if (line.startsWith("-")) {
+      return "Removed: " + line.substring(1).trim();
     }
     return line;
   }
