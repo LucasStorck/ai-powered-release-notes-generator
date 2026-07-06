@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/release-note")
+@RequestMapping("api/v1/release-notes")
 public class ReleaseNoteController {
 
   final private ReleaseNoteService releaseNoteService;
@@ -48,7 +48,6 @@ public class ReleaseNoteController {
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteReleaseNote(@PathVariable UUID id) {
     releaseNoteService.deleteReleaseNote(id);
-    return ResponseEntity.ok().build();
+    return ResponseEntity.noContent().build();
   }
-
 }

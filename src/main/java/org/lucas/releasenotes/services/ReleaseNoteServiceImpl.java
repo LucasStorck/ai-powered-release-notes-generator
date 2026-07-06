@@ -19,19 +19,29 @@ public class ReleaseNoteServiceImpl implements ReleaseNoteService {
   final private ReleaseNoteRepository releaseNoteRepository;
   final private NoteReleaseMapper noteReleaseMapper;
   final private GitPatchParserService gitPatchParserService;
+  final private AISummarizerService aISummarizerService;
 
-  public ReleaseNoteServiceImpl(ReleaseNoteRepository releaseNoteRepository, NoteReleaseMapper noteReleaseMapper, GitPatchParserService gitPatchParserService) {
+  public ReleaseNoteServiceImpl(ReleaseNoteRepository releaseNoteRepository, NoteReleaseMapper noteReleaseMapper, GitPatchParserService gitPatchParserService, AISummarizerService aISummarizerService) {
     this.releaseNoteRepository = releaseNoteRepository;
     this.noteReleaseMapper = noteReleaseMapper;
     this.gitPatchParserService = gitPatchParserService;
+    this.aISummarizerService = aISummarizerService;
   }
 
   @Override
   @Transactional
   public ReleaseNoteResponseDto createReleaseNote(ReleaseNoteRequestDto releaseNoteRequestDto) {
+
     String diffClean = gitPatchParserService.cleanPatch(releaseNoteRequestDto.rawPatch());
+
+    String summary = aISummarizerService.summarize(diffClean);
+
     ReleaseNote releaseNote = noteReleaseMapper.toEntity(releaseNoteRequestDto);
+
     releaseNote.setCleanPatch(diffClean);
+    releaseNote.setMarkdownSummary(summary);
+    releaseNote.setModelUsed("Llama-3.1-8B-Instruct");
+
     ReleaseNote savedReleaseNote = releaseNoteRepository.save(releaseNote);
     return noteReleaseMapper.toReleaseNoteResponseDto(savedReleaseNote);
   }
