@@ -39,10 +39,14 @@ public class ReleaseNoteServiceImpl implements ReleaseNoteService {
 
     String diffClean = gitPatchParserService.cleanPatch(releaseNoteRequestDto.rawPatch());
     String summary = aISummarizerService.summarize(diffClean);
-    String username = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication()
-            .getName();
+    var auth = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+
+    String username = (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal()))
+            ? auth.getName()
+            : "admin";
+
     org.lucas.releasenotes.models.User user = userRepository.findByUsername(username)
-            .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
+            .orElseThrow(() -> new ResourceNotFoundException("User not Found: " + username));
 
     ReleaseNote releaseNote = releaseNoteMapper.toEntity(releaseNoteRequestDto);
 

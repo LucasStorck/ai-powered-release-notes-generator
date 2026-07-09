@@ -1,8 +1,6 @@
 package org.lucas.releasenotes.services;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -14,11 +12,13 @@ public class AISummarizerServiceImpl implements AISummarizerService {
 
   private final RestClient restClient;
   private final double temperature;
+  private final String model;
 
   public AISummarizerServiceImpl(
           @Value("${ai.huggingface.base-url}") String baseUrl,
           @Value("${ai.huggingface.api-key}") String token,
-          @Value("${ai.huggingface.temperature}") double temperature) {
+          @Value("${ai.huggingface.temperature}") double temperature,
+          @Value("${ai.huggingface.model}") String model) {
 
     this.restClient = RestClient.builder()
             .baseUrl(baseUrl)
@@ -26,27 +26,31 @@ public class AISummarizerServiceImpl implements AISummarizerService {
             .defaultHeader("Content-Type", "application/json")
             .build();
     this.temperature = temperature;
+    this.model = model;
   }
 
   @Override
   public String summarize(String cleanedPatch) {
+    String modelPath = "/models/" + this.model;
+
     Map<String, Object> requestBody = Map.of(
             "inputs", "You are a professional software engineer. Summarize the following Git diff into clean, professional Markdown Release Notes. Patch data: " + cleanedPatch,
             "parameters", Map.of(
                     "max_new_tokens", 500,
-                    "temperature", 0.3
+                    "temperature", this.temperature
             )
     );
 
     try {
-      List<Map<String, Object>> response = restClient.post()
-              .contentType(MediaType.APPLICATION_JSON)
+      var response = restClient.post()
+              .uri(modelPath)
               .body(requestBody)
               .retrieve()
               .body(List.class);
 
       if (response != null && !response.isEmpty()) {
-        return (String) response.get(0).get("generated_text");
+        Map<String, Object> firstEntry = (Map<String, Object>) response.get(0);
+        return (String) firstEntry.getOrDefault("generated_text", "Erro: Campo 'generated_text' ausente.");
       }
       return "Erro: Resposta Vazia da IA.";
 

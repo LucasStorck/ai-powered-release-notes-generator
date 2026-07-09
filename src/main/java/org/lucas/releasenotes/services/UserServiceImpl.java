@@ -49,21 +49,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
     User user = userMapper.toEntity(userRequestDto);
     User savedUser = userRepository.save(user);
-    return userMapper.userToUserResponseDto(savedUser);
+    return userMapper.toResponseDto(savedUser);
   }
 
   @Override
   public UserResponseDto getUserById(UUID id) {
     User user = userRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
-    return userMapper.userToUserResponseDto(user);
+    return userMapper.toResponseDto(user);
   }
 
   @Override
   public List<UserResponseDto> getAllUsers() {
     return userRepository.findAll()
             .stream()
-            .map(userMapper::userToUserResponseDto)
+            .map(userMapper::toResponseDto)
             .toList();
   }
 
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
     userMapper.updateUser(userUpdateDto, user);
     User updatedUser = userRepository.save(user);
-    return userMapper.userToUserResponseDto(updatedUser);
+    return userMapper.toResponseDto(updatedUser);
   }
 
   @Override

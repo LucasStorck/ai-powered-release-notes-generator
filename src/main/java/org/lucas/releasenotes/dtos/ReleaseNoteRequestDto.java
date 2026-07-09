@@ -3,13 +3,13 @@ package org.lucas.releasenotes.dtos;
 import jakarta.validation.constraints.NotBlank;
 
 public record ReleaseNoteRequestDto(
-        @NotBlank(message = "O Patch (rawPatch) não pode estar vazio")
+        @NotBlank(message = "The Patch (rawPatch) Cannot be Empty.")
         String rawPatch,
 
-        @NotBlank(message = "A tag de versão é obrigatória")
+        @NotBlank(message = "The Version Tag is Mandatory.")
         String versionTag,
 
-        @NotBlank(message = "O nome do repositório é obrigatório")
+        @NotBlank(message = "The Repository Name is Required.")
         String repositoryName
 ) {
 }

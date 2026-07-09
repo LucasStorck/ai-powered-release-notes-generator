@@ -9,7 +9,7 @@ public record UserRequestDto(
 
                 @NotBlank(message = "Username is Required") String username,
 
-                @NotBlank(message = "Password is Required") @Size(min = 8, message = "Password must be at Least 8 Characters") String password
+                @NotBlank(message = "Password is Required") @Size(min = 8, message = "Password Must be at Least 8 Characters") String password
 
 ) {
 }
