@@ -8,7 +8,7 @@ import org.springframework.boot.persistence.autoconfigure.EntityScan;
 @EntityScan(basePackages = "org.lucas.releasenotes.models")
 public class ReleaseNotesApplication {
 
-  static void main(String[] args) {
+  public static void main(String[] args) {
     SpringApplication.run(ReleaseNotesApplication.class, args);
   }
 

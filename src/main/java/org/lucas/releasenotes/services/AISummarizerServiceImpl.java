@@ -31,31 +31,50 @@ public class AISummarizerServiceImpl implements AISummarizerService {
 
   @Override
   public String summarize(String cleanedPatch) {
-    String modelPath = "/models/" + this.model;
-
-    Map<String, Object> requestBody = Map.of(
-            "inputs", "You are a professional software engineer. Summarize the following Git diff into clean, professional Markdown Release Notes. Patch data: " + cleanedPatch,
-            "parameters", Map.of(
-                    "max_new_tokens", 500,
-                    "temperature", this.temperature
+    List<Map<String, String>> messages = List.of(
+            Map.of(
+                    "role", "system",
+                    "content", "You are a professional software engineer specialized in writing Release Notes. " +
+                               "Given a cleaned Git diff, produce clear, concise and professional Release Notes in Markdown format. " +
+                               "Use sections like '## What's Changed', '### New Features', '### Bug Fixes', '### Refactoring'. " +
+                               "Be objective and focus on the user impact of each change."
+            ),
+            Map.of(
+                    "role", "user",
+                    "content", "Generate Release Notes from the following Git diff:\n\n" + cleanedPatch
             )
     );
 
+    Map<String, Object> requestBody = Map.of(
+            "model", this.model,
+            "messages", messages,
+            "max_tokens", 500,
+            "temperature", this.temperature
+    );
+
     try {
-      var response = restClient.post()
-              .uri(modelPath)
+      @SuppressWarnings("unchecked")
+      Map<String, Object> response = restClient.post()
+              .uri("/v1/chat/completions")
               .body(requestBody)
               .retrieve()
-              .body(List.class);
+              .body(Map.class);
 
-      if (response != null && !response.isEmpty()) {
-        Map<String, Object> firstEntry = (Map<String, Object>) response.get(0);
-        return (String) firstEntry.getOrDefault("generated_text", "Erro: Campo 'generated_text' ausente.");
+      if (response != null) {
+        @SuppressWarnings("unchecked")
+        List<Map<String, Object>> choices = (List<Map<String, Object>>) response.get("choices");
+        if (choices != null && !choices.isEmpty()) {
+          @SuppressWarnings("unchecked")
+          Map<String, Object> message = (Map<String, Object>) choices.get(0).get("message");
+          if (message != null) {
+            return (String) message.getOrDefault("content", "Erro: Campo 'content' ausente na resposta.");
+          }
+        }
       }
-      return "Erro: Resposta Vazia da IA.";
+      return "Erro: Resposta vazia ou formato inesperado da IA.";
 
     } catch (Exception e) {
-      return "Erro ao Processar IA: " + e.getMessage();
+      return "Erro ao processar IA: " + e.getMessage();
     }
   }
 }

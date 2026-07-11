@@ -55,7 +55,7 @@ public class ReleaseNoteServiceImpl implements ReleaseNoteService {
     releaseNote.setModelUsed("Llama-3.1-8B-Instruct");
     releaseNote.setUser(user);
 
-    ReleaseNote savedReleaseNote = releaseNoteRepository.save(releaseNote);
+    ReleaseNote savedReleaseNote = releaseNoteRepository.saveAndFlush(releaseNote);
     return releaseNoteMapper.toReleaseNoteResponseDto(savedReleaseNote);
   }
 

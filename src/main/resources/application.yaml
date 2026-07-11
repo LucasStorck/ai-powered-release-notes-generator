@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/release_notes
     username: postgres
-    password:
+    password: novaSenha
 
   # JPA/Hibernate Configs
   jpa:
@@ -25,7 +25,7 @@ spring:
   # AI Configs (Hugging Face)
 ai:
   huggingface:
-    api-key: ${AI_HUGGINGFACE_TOKEN}
-    base-url: https://api-inference.huggingface.co
-    model: meta-llama/Meta-Llama-3.1-8B-Instruct
+    api-key:
+    base-url: https://router.huggingface.co
+    model: meta-llama/Llama-3.1-8B-Instruct
     temperature: 0.3
