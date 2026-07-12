@@ -2,38 +2,27 @@
 
 > Gerador de release notes com inteligência artificial. O sistema analisa commits e PRs de um repositório e gera changelogs legíveis automaticamente.
 
-## Estrutura do Mono-repo
+## Estrutura (Mono-Repo)
 
 ```
 ai-powered-release-notes/
-├── backend/                  # Spring Boot 4.1 · Java 21 · PostgreSQL
+├── backend/                  
 │   ├── src/
 │   ├── mvnw / mvnw.cmd
-│   └── pom.xml               # Herda do pom.xml raiz
+│   └── pom.xml              
 │
-├── frontend/                 # Angular 19 · Sass · Standalone Components
+├── frontend/                 
 │   ├── src/
 │   ├── angular.json
 │   └── package.json
 │
-├── .github/                  # CI/CD workflows (a criar)
+├── .github/                  
 ├── .gitignore
-├── .env                      # Variáveis de ambiente (não versionado)
-├── package.json              # Workspace npm — scripts unificados
-├── pom.xml                   # POM pai Maven — aggregator
+├── .env                      
+├── package.json              
+├── pom.xml                  
 └── README.md
 ```
-
-## Pré-requisitos
-
-| Ferramenta | Versão mínima |
-|---|---|
-| Java | 21 |
-| Maven | 3.9+ (ou use `./mvnw` no `backend/`) |
-| Node.js | 18.x LTS |
-| npm | 9.x |
-| PostgreSQL | 14+ |
-
 ## Rodando localmente
 
 ### Backend (Spring Boot)
@@ -41,8 +30,7 @@ ai-powered-release-notes/
 ```bash
 cd backend
 ./mvnw spring-boot:run
-# API disponível em http://localhost:8080
-# Swagger UI: http://localhost:8080/swagger-ui/index.html
+# Swagger URL: http://localhost:8080/swagger-ui/index.html
 ```
 
 ### Frontend (Angular)
@@ -50,15 +38,14 @@ cd backend
 ```bash
 cd frontend
 npm run start
-# App disponível em http://localhost:4200
+# Angular URL: http://localhost:4200
 ```
 
 ### Ambos simultaneamente (requer `npm-run-all`)
 
 ```bash
-# Na raiz do projeto:
-npm install          # instala npm-run-all na raiz
-npm run dev          # inicia backend e frontend em paralelo
+npm install
+npm run dev
 ```
 
 ## Variáveis de Ambiente
@@ -78,9 +65,8 @@ AI_API_KEY=sk-...
 ## Build para Produção
 
 ```bash
-# Backend — gera o .jar em backend/target/
 npm run backend:build
-
-# Frontend — gera o bundle em frontend/dist/
 npm run frontend:build
 ```
+
+**_Desenvolvido por Lucas Storck_**
