@@ -25,7 +25,7 @@ spring:
   # AI Configs (Hugging Face)
 ai:
   huggingface:
-    api-key:
+    api-key: ${HUGGINGFACE_API_KEY}
     base-url: https://router.huggingface.co
     model: meta-llama/Llama-3.1-8B-Instruct
     temperature: 0.3

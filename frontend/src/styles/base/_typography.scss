@@ -1,0 +1,101 @@
+// =============================================================================
+// TIPOGRAFIA — IBM Plex Font Family
+// =============================================================================
+@use 'abstracts/variables' as *;
+
+// --- Escala tipográfica global ---
+body {
+  font-family: $font-family-sans;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-normal;
+  color: $color-text-primary;
+  background-color: $color-bg;
+}
+
+// --- Headings ---
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-sans;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+}
+
+h1 { font-size: $font-size-4xl; }
+h2 { font-size: $font-size-3xl; }
+h3 { font-size: $font-size-2xl; }
+h4 { font-size: $font-size-xl; }
+h5 { font-size: $font-size-lg; }
+h6 { font-size: $font-size-md; }
+
+// --- Parágrafos ---
+p {
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+}
+
+// --- Links ---
+a {
+  color: $color-text-primary;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: opacity $transition-fast;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+// --- Código ---
+code, kbd, samp {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: $radius-sm;
+}
+
+pre {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $space-6;
+  overflow-x: auto;
+  line-height: $line-height-relaxed;
+
+  code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+  }
+}
+
+// --- Utilitários tipográficos ---
+.text-xs     { font-size: $font-size-xs; }
+.text-sm     { font-size: $font-size-sm; }
+.text-base   { font-size: $font-size-base; }
+.text-lg     { font-size: $font-size-lg; }
+.text-xl     { font-size: $font-size-xl; }
+.text-2xl    { font-size: $font-size-2xl; }
+
+.font-light    { font-weight: $font-weight-light; }
+.font-regular  { font-weight: $font-weight-regular; }
+.font-medium   { font-weight: $font-weight-medium; }
+.font-semibold { font-weight: $font-weight-semibold; }
+.font-bold     { font-weight: $font-weight-bold; }
+
+.text-primary   { color: $color-text-primary; }
+.text-secondary { color: $color-text-secondary; }
+.text-muted     { color: $color-text-muted; }
+
+.font-mono  { font-family: $font-family-mono; }
+.font-serif { font-family: $font-family-serif; }
+
+.tracking-tight   { letter-spacing: $letter-spacing-tight; }
+.tracking-wide    { letter-spacing: $letter-spacing-wide; }
+.tracking-widest  { letter-spacing: $letter-spacing-widest; }

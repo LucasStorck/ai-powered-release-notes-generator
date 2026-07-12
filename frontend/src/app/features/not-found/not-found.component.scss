@@ -1,0 +1,36 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+.not-found {
+  @include flex-center;
+  flex-direction: column;
+  gap: $space-4;
+  min-height: 100vh;
+  background: $color-bg;
+  text-align: center;
+
+  &__code {
+    font-family: $font-family-mono;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    color: $color-border-strong;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $color-text-primary;
+    }
+  }
+}

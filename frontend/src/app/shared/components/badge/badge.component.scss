@@ -1,0 +1,43 @@
+@use 'abstracts/variables' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px $space-2;
+  font-family: $font-family-sans;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-wide;
+  border-radius: $radius-full;
+  border: 1px solid transparent;
+
+  &--default {
+    background: rgba(0, 0, 0, 0.06);
+    color: $color-text-secondary;
+    border-color: $color-border;
+  }
+
+  &--success {
+    background: rgba(30, 132, 73, 0.10);
+    color: $color-success;
+    border-color: rgba(30, 132, 73, 0.20);
+  }
+
+  &--warning {
+    background: rgba(214, 137, 16, 0.10);
+    color: $color-warning;
+    border-color: rgba(214, 137, 16, 0.20);
+  }
+
+  &--danger {
+    background: rgba(192, 57, 43, 0.10);
+    color: $color-danger;
+    border-color: rgba(192, 57, 43, 0.20);
+  }
+
+  &--info {
+    background: rgba(26, 82, 118, 0.10);
+    color: $color-info;
+    border-color: rgba(26, 82, 118, 0.20);
+  }
+}

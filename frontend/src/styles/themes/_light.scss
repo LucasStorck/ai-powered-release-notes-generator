@@ -1,0 +1,49 @@
+// =============================================================================
+// TEMA LIGHT (padrão do sistema)
+// Aplica CSS custom properties na raiz — fácil de trocar via JS
+// =============================================================================
+@use 'abstracts/variables' as *;
+
+:root,
+[data-theme='light'] {
+  // Cores de fundo
+  --color-bg:         #{$color-bg};
+  --color-bg-surface: #{$color-bg-surface};
+  --color-bg-hover:   #{$color-bg-hover};
+
+  // Cores de texto
+  --color-text-primary:   #{$color-text-primary};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-muted:     #{$color-text-muted};
+
+  // Cores de ação
+  --color-primary:       #{$color-primary};
+  --color-primary-hover: #{$color-primary-hover};
+  --color-accent:        #{$color-accent};
+  --color-accent-light:  #{$color-accent-light};
+
+  // Status
+  --color-danger:  #{$color-danger};
+  --color-warning: #{$color-warning};
+  --color-success: #{$color-success};
+  --color-info:    #{$color-info};
+
+  // Bordas e sombras
+  --color-border:        #{$color-border};
+  --color-border-strong: #{$color-border-strong};
+  --shadow-sm:           #{$shadow-sm};
+  --shadow-md:           #{$shadow-md};
+
+  // Tipografia
+  --font-family-sans:  #{$font-family-sans};
+  --font-family-mono:  #{$font-family-mono};
+  --font-family-serif: #{$font-family-serif};
+
+  // Layout
+  --sidebar-width:           #{$sidebar-width};
+  --sidebar-width-collapsed: #{$sidebar-width-collapsed};
+  --header-height:           #{$header-height};
+
+  // Scrollbar
+  color-scheme: light;
+}

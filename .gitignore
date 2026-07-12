@@ -1,34 +1,46 @@
+# =============================================================================
+# AI-Powered Release Notes — .gitignore do Mono-repo
+# =============================================================================
+
+# --- Backend (Maven / Spring Boot) ---
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+!backend/**/src/main/**/target/
+!backend/**/src/test/**/target/
+!backend/**/src/main/**/build/
+!backend/**/src/test/**/build/
+
+# --- Frontend (Angular / Node) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.env.local
+
+# --- Raiz do workspace ---
+node_modules/
+.env
 HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
+# --- IDEs ---
+.idea/
 *.iws
 *.iml
 *.ipr
-
-### NetBeans ###
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+.apt_generated/
+.nb-gradle/
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
 
-### VS Code ###
+# --- VS Code ---
 .vscode/
-.env
+
+# --- Sistema operacional ---
+.DS_Store
+Thumbs.db

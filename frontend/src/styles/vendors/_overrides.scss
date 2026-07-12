@@ -1,0 +1,9 @@
+// =============================================================================
+// OVERRIDES DE BIBLIOTECAS TERCEIRAS
+// Adicione aqui os ajustes de estilo de libs externas (ex: PrimeNG, CDK...)
+// =============================================================================
+
+// Exemplo: normalização do Angular CDK overlay
+.cdk-overlay-container {
+  z-index: 1000;
+}

@@ -1,0 +1,23 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+.dashboard {
+  padding: $space-8;
+
+  &__header {
+    margin-bottom: $space-8;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-text-primary;
+    margin-bottom: $space-2;
+  }
+
+  &__subtitle {
+    font-size: $font-size-base;
+    color: $color-text-muted;
+  }
+}

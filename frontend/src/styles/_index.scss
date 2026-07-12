@@ -1,0 +1,71 @@
+// =============================================================================
+// ENTRY POINT GLOBAL DE ESTILOS
+// Importado pelo angular.json como "styles": ["src/styles/_index.scss"]
+// =============================================================================
+
+// 1. Abstracts (sem output CSS — apenas ferramentas)
+@use 'abstracts/variables' as *;
+@use 'abstracts/breakpoints' as *;
+@use 'abstracts/functions' as *;
+@use 'abstracts/mixins' as *;
+
+// 2. Base
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/animations';
+
+// 3. Temas
+@use 'themes/light';
+@use 'themes/dark';
+
+// 4. Vendors
+@use 'vendors/overrides';
+
+// 5. Utilitários globais de layout
+.container {
+  width: 100%;
+  max-width: $container-xl;
+  margin-inline: auto;
+  padding-inline: $space-6;
+
+  @include respond-down('sm') {
+    padding-inline: $space-4;
+  }
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: $sidebar-width 1fr;
+  grid-template-rows: $header-height 1fr;
+  min-height: 100vh;
+  background: $color-bg;
+
+  @include respond-down('lg') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main-content {
+  grid-column: 2;
+  grid-row: 2;
+  padding: $space-8;
+  overflow-y: auto;
+
+  @include respond-down('lg') {
+    grid-column: 1;
+  }
+
+  @include respond-down('sm') {
+    padding: $space-4;
+  }
+}
+
+// Utilitários gerais
+.sr-only { @include visually-hidden; }
+
+.truncate    { @include text-truncate(1); }
+.truncate-2  { @include text-truncate(2); }
+.truncate-3  { @include text-truncate(3); }
+
+.flex-center  { @include flex-center; }
+.flex-between { @include flex-between; }

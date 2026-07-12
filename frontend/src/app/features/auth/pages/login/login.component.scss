@@ -1,0 +1,29 @@
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+.login-page {
+  @include flex-center;
+  min-height: 100vh;
+  background: $color-bg;
+  padding: $space-6;
+
+  &__card {
+    @include card($space-12);
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-text-primary;
+    margin-bottom: $space-2;
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+}

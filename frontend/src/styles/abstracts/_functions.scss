@@ -1,0 +1,28 @@
+// =============================================================================
+// SASS FUNCTIONS
+// =============================================================================
+@use 'sass:math';
+@use 'sass:color';
+@use 'variables' as *;
+
+/// Converte px para rem com base no font-size base de 16px
+/// @example scss font-size: rem(24); → 1.5rem
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+/// Retorna uma cor com opacidade
+/// @example scss background: alpha($color-primary, 0.1);
+@function alpha($clr, $opacity) {
+  @return rgba($clr, $opacity);
+}
+
+/// Escurece uma cor por porcentagem
+@function shade($clr, $amount: 10%) {
+  @return color.mix(black, $clr, $amount);
+}
+
+/// Clareia uma cor por porcentagem
+@function tint($clr, $amount: 10%) {
+  @return color.mix(white, $clr, $amount);
+}

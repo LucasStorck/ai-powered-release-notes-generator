@@ -1,0 +1,30 @@
+// =============================================================================
+// TEMA DARK (opcional — ativado via data-theme="dark")
+// =============================================================================
+
+[data-theme='dark'] {
+  --color-bg:         #1A1A1A;
+  --color-bg-surface: #242424;
+  --color-bg-hover:   #2E2E2E;
+
+  --color-text-primary:   #F5F5EB;
+  --color-text-secondary: #B0B0A0;
+  --color-text-muted:     #6B6B5A;
+
+  --color-primary:       #F5F5EB;
+  --color-primary-hover: #FFFFFF;
+  --color-accent:        #7EBF78;
+  --color-accent-light:  #A3D49E;
+
+  --color-danger:  #E87070;
+  --color-warning: #E8B870;
+  --color-success: #70C470;
+  --color-info:    #70A0C4;
+
+  --color-border:        rgba(255, 255, 255, 0.10);
+  --color-border-strong: rgba(255, 255, 255, 0.20);
+  --shadow-sm:           0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md:           0 4px 12px rgba(0, 0, 0, 0.5);
+
+  color-scheme: dark;
+}

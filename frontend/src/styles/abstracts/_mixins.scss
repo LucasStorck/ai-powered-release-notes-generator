@@ -1,0 +1,194 @@
+// =============================================================================
+// MIXINS
+// =============================================================================
+@use 'variables' as *;
+@use 'breakpoints' as *;
+
+// --- Layout ---
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin grid($cols: 1, $gap: $space-6) {
+  display: grid;
+  grid-template-columns: repeat($cols, 1fr);
+  gap: $gap;
+}
+
+// --- Responsividade ---
+
+/// Aplica estilos abaixo de um breakpoint (mobile-first reverso)
+/// @example scss @include respond-down('md') { display: none; }
+@mixin respond-down($bp) {
+  @media (max-width: breakpoint($bp)) {
+    @content;
+  }
+}
+
+/// Aplica estilos acima de um breakpoint (mobile-first)
+@mixin respond-up($bp) {
+  @media (min-width: breakpoint($bp)) {
+    @content;
+  }
+}
+
+// --- Tipografia ---
+
+@mixin text-truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@mixin heading($size: $font-size-2xl, $weight: $font-weight-semibold) {
+  font-family: $font-family-sans;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height-tight;
+  letter-spacing: $letter-spacing-tight;
+  color: $color-text-primary;
+}
+
+@mixin label($size: $font-size-xs, $spacing: $letter-spacing-widest) {
+  font-family: $font-family-sans;
+  font-size: $size;
+  font-weight: $font-weight-medium;
+  letter-spacing: $spacing;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+@mixin mono-text {
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  letter-spacing: $letter-spacing-wide;
+}
+
+// --- Componentes ---
+
+@mixin card($padding: $space-6) {
+  background: $color-bg-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $padding;
+  box-shadow: $shadow-sm;
+  transition: box-shadow $transition-normal, transform $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-1px);
+  }
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  font-family: $font-family-sans;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-sm;
+  border-radius: $radius-md;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    background $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast,
+    box-shadow $transition-fast,
+    transform $transition-fast;
+  user-select: none;
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+@mixin input-base {
+  width: 100%;
+  font-family: $font-family-sans;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
+  background: $color-bg;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  transition: border-color $transition-fast, box-shadow $transition-fast;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// --- Utilitários ---
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-border-strong;
+    border-radius: $radius-full;
+  }
+}
+
+@mixin surface-raised {
+  background: $color-bg-surface;
+  box-shadow: $shadow-sm;
+  border: 1px solid $color-border;
+}
