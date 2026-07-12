@@ -2,6 +2,14 @@
 
 > Gerador de release notes com inteligência artificial. O sistema analisa commits e PRs de um repositório e gera changelogs legíveis automaticamente.
 
+## Tecnologias
+- **Java**
+- **Spring Boot**
+- **Spring Security**
+- **PostgreSQL**
+- **Liquibase** (Migration)
+- **Swagger**
+
 ## Estrutura (Mono-Repo)
 
 ```
